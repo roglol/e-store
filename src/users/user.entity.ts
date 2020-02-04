@@ -17,7 +17,6 @@ export class User {
     isActive:boolean;
 
     @OneToOne(() => Address, address => address.user)
-    @JoinColumn()
     address: Address;
 
 }

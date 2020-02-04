@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne,JoinColumn } from 'typeorm';
 import {User} from '../users/user.entity';
 @Entity()
 export class Address {
@@ -9,11 +9,9 @@ export class Address {
     @Column({ length: 255 })
     address:string;
 
-    @Column({ length: 255 })
-    userId:string;
-
-     @OneToOne(() => User, user => user.address, {
-         cascade: true
-     })
-     user:User;
+    @Column()
+    userId: number;
+    @OneToOne(() => User, user => user.address)
+    @JoinColumn({name:'userId'})
+    user: User;
 }
